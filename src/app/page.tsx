@@ -1,8 +1,55 @@
+"use client";
+import { useState, MouseEvent, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Input from "./components/Input";
+import Form from "./components/Form";
+
+interface MyEventTarget extends EventTarget {
+    value: string;
+}
 
 export default function Home() {
+    const [buttons, setButtons] = useState([
+        { value: 1, clicked: false },
+        { value: 2, clicked: false },
+        { value: 3, clicked: false },
+        { value: 4, clicked: false },
+        { value: 5, clicked: false },
+    ]);
+
+    const router = useRouter();
+
+    function handleClick(event: MouseEvent<HTMLInputElement>) {
+        const target = event.target as MyEventTarget;
+
+        setButtons(
+            buttons.map((button) => {
+                if (button.clicked) {
+                    return {
+                        ...button,
+                        clicked: false,
+                    };
+                }
+                return {
+                    ...button,
+                    clicked: button.value === +target.value,
+                };
+            })
+        );
+    }
+
+    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        return [...buttons].map((btn) => {
+            if (btn.clicked) {
+                router.push("/thank-you?rating=" + btn.value);
+            }
+        });
+    }
+
     return (
-        <article>
+        <article className="[ wrapper flow ] [ padding-md ]">
             <figure>
                 <Image
                     src="/images/icon-star.svg"
@@ -16,24 +63,23 @@ export default function Home() {
                 Please let us know how we did with your support request. All
                 feedback is appreciated to help us improve our offering!
             </p>
-            <div>
-                <label htmlFor="">
-                    <input type="number" value={1} readOnly />
-                </label>
-                <label htmlFor="">
-                    <input type="number" value={2} readOnly />
-                </label>
-                <label htmlFor="">
-                    <input type="number" value={3} readOnly />
-                </label>
-                <label htmlFor="">
-                    <input type="number" value={4} readOnly />
-                </label>
-                <label htmlFor="">
-                    <input type="number" value={5} readOnly />
-                </label>
-            </div>
-            <button>Submit</button>
+            <Form onSubmit={handleSubmit}>
+                {buttons.map((btn, idx) => {
+                    return (
+                        <label htmlFor="" key={idx}>
+                            <Input
+                                btn={{ ...btn }}
+                                onClick={(e) => handleClick(e)}
+                            />
+                        </label>
+                    );
+                })}
+                <div>
+                    <button className="[ button ] [ button-primary ]">
+                        Submit
+                    </button>
+                </div>
+            </Form>
         </article>
     );
 }

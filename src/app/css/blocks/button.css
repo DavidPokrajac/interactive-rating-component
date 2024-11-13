@@ -1,0 +1,18 @@
+.button {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 1em 0;
+    border-radius: 2rem;
+    font-weight: var(--fw-bold);
+    transition: 0.2s all ease-in;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: var(--clr-neutral-100);
+}
+
+.button:focus-visible {
+    outline-offset: 5px;
+    outline: 2px solid var(--clr-primary-400);
+}

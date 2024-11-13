@@ -1,0 +1,19 @@
+.input {
+    display: inline-block;
+    width: 3rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    padding: 1em 0;
+    transition: all 0.2s ease-out;
+}
+
+.input:hover {
+    cursor: pointer;
+    background-color: var(--clr-primary-400);
+    color: var(--clr-neutral-900);
+}
+
+.input:focus-visible {
+    outline-offset: 5px;
+    outline: 2px solid var(--clr-primary-400);
+}

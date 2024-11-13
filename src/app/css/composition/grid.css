@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 1.5em;
+    /* Solution to calculate column gap between each grid column, so that the spacing between columns is always same  */
+    column-gap: calc((100% - 5 * 3rem) / 4);
+}
+
+form > div {
+    grid-column: 1 / 6;
+    display: grid;
+    grid-template-columns: subgrid;
+}
+
+button {
+    grid-column: 1 / -1;
+}

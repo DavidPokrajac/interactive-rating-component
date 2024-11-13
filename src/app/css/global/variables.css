@@ -6,7 +6,7 @@
     --clr-neutral-700: hsl(213, 19%, 18%);
     --clr-neutral-900: hsl(216, 12%, 8%);
 
-    --fs-base: 0.938rem;
+    --fs-base: 15px;
     --fw-normal: 400;
     --fw-bold: 700;
 }

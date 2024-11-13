@@ -1,0 +1,5 @@
+.wrapper {
+    width: min(90%, 25rem);
+    margin: 0 auto;
+    border-radius: 20px;
+}
