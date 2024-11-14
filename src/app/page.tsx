@@ -66,7 +66,7 @@ export default function Home() {
             <Form onSubmit={handleSubmit}>
                 {buttons.map((btn, idx) => {
                     return (
-                        <label htmlFor="" key={idx}>
+                        <label htmlFor={`rating-value-${btn.value}`} key={idx}>
                             <Input
                                 btn={{ ...btn }}
                                 onClick={(e) => handleClick(e)}
